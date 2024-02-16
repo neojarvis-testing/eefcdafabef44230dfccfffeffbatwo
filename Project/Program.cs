@@ -17,9 +17,20 @@ class Program
         Thread.Sleep(5000); 
         IWebElement searchBox = driver.FindElement(By.CssSelector("#searchIconId"));
         searchBox.Click();
-        IWebElement searchButton = driver.FindElement(By.XPath("//input[@id='search-box-input']"));
-        searchButton.Click();
-        searchButton.SendKeys("Razor");
+        try
+        {
+            Console.WriteLine("hello111111111");
+            IWebElement searchButton = driver.FindElement(By.XPath("/html[1]/body[1]/div[1]/div[1]/header[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]/div[2]/p[1]"));
+            Console.WriteLine("hellosdns");
+            searchButton.Click();
+            searchButton.SendKeys("Razor");
+        }
+        catch (System.Exception)
+        {
+            Console.WriteLine("hello");
+            throw;
+        }
+        
         IWebElement razorElement = driver.FindElement(By.XPath("//div[@id='Razor']"));
         razorElement.Click();
         string currentUrl = driver.Url;
