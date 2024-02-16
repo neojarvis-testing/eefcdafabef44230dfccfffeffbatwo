@@ -16,18 +16,14 @@ class Program
         driver.Navigate().GoToUrl("https://www.gillette.co.in");
         Thread.Sleep(5000); 
         IWebElement searchBox = driver.FindElement(By.CssSelector("#searchIconId"));
-
-
         searchBox.Click();
-        IWebElement searchButton = driver.FindElement(By.XPath("//button[@title='Search here']"));
+        IWebElement searchButton = driver.FindElement(By.XPath("//input[@id='search-box-input']"));
         searchButton.Click();
         searchButton.SendKeys("Razor");
         IWebElement razorElement = driver.FindElement(By.XPath("//div[@id='Razor']"));
         razorElement.Click();
         string currentUrl = driver.Url;
         Console.WriteLine("Current URL: " + currentUrl);
-
-        // Closing the browser
         driver.Quit();
     }
 }
