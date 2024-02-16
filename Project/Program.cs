@@ -11,21 +11,17 @@ class Program
         Uri seleniumHubUrl = new Uri("http://localhost:4444");
         ChromeOptions options = new ChromeOptions();
         options.AddArguments("--no-sandbox"); 
-        IWebDriver driver = new RemoteWebDriver(seleniumHubUrl, options.ToCapabilities(), TimeSpan.FromSeconds(10));
+        IWebDriver driver = new RemoteWebDriver(seleniumHubUrl, options); // Removed ToCapabilities() method
         driver.Manage().Window.Maximize();
         driver.Navigate().GoToUrl("https://www.gillette.co.in");
-        Thread.Sleep(1000); 
+        Thread.Sleep(5000); 
+        IWebElement searchBox = driver.FindElement(By.CssSelector("#searchIconId"));
 
-        IWebElement searchBox = driver.FindElement(By.XPath("//*[@id="searchIconId"]"));
+
         searchBox.Click();
-
-        searchBox.SendKeys("Razor");
-
         IWebElement searchButton = driver.FindElement(By.XPath("//button[@title='Search here']"));
         searchButton.Click();
-
-        Thread.Sleep(1000);
-
+        searchButton.SendKeys("Razor");
         IWebElement razorElement = driver.FindElement(By.XPath("//div[@id='Razor']"));
         razorElement.Click();
         string currentUrl = driver.Url;
