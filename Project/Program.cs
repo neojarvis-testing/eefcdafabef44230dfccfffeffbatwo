@@ -14,7 +14,7 @@ class Program
         IWebDriver driver = new RemoteWebDriver(seleniumHubUrl, options.ToCapabilities(), TimeSpan.FromSeconds(10));
         driver.Manage().Window.Maximize();
         driver.Navigate().GoToUrl("https://www.gillette.co.in");
-        // Thread.Sleep(30000); 
+        Thread.Sleep(30000); 
         string currentUrl = driver.Url;
         Console.WriteLine("Current URL: " + currentUrl);
         driver.Quit();
