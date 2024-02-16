@@ -14,9 +14,24 @@ class Program
         IWebDriver driver = new RemoteWebDriver(seleniumHubUrl, options.ToCapabilities(), TimeSpan.FromSeconds(10));
         driver.Manage().Window.Maximize();
         driver.Navigate().GoToUrl("https://www.gillette.co.in");
-        Thread.Sleep(30000); 
+        Thread.Sleep(1000); 
+
+        IWebElement searchBox = driver.FindElement(By.XPath("//*[@id="searchIconId"]"));
+        searchBox.Click();
+
+        searchBox.SendKeys("Razor");
+
+        IWebElement searchButton = driver.FindElement(By.XPath("//button[@title='Search here']"));
+        searchButton.Click();
+
+        Thread.Sleep(1000);
+
+        IWebElement razorElement = driver.FindElement(By.XPath("//div[@id='Razor']"));
+        razorElement.Click();
         string currentUrl = driver.Url;
         Console.WriteLine("Current URL: " + currentUrl);
+
+        // Closing the browser
         driver.Quit();
     }
 }
